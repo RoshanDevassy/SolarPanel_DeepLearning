@@ -1,0 +1,13 @@
+.git
+.gitignore
+README.md
+*.log
+pyenv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.git/
+models/spclass/*.keras
+models/spfault/*.keras
+models/modelfiles/

@@ -1,0 +1,10 @@
+# Ignore pyenv files
+.python-version
+
+# Ignore virtual environment
+pyenv/
+
+# Ignore cache and compiled files
+__pycache__/
+*.pyc
+*.pyo
