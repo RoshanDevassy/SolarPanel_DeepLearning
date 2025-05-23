@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y gcc g++ git wget curl && \
 
 COPY ./requirements.txt ./requirements.txt
 
-COPY ..
+COPY . .
 
 # Install Python packages
 RUN pip install -r requirements.txt
