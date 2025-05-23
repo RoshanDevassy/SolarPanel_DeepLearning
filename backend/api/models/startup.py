@@ -16,13 +16,20 @@ fault_model_path = "models/SpFaultModel/FaultModel.keras"
 # Download classification model
 if not os.path.exists(classify_model_path):
     print("📥 Downloading classification model...")
-    gdown.download(SPCLASS_MODEL_URL, classify_model_path, quiet=False)
+    try:
+        gdown.download(SPCLASS_MODEL_URL, classify_model_path, quiet=False)
+    except Exception as e:
+        print(f"❌ Failed to download classification model: {e}")
 else:
     print("✅ Classification model already exists")
 
 # Download fault detection model
 if not os.path.exists(fault_model_path):
     print("📥 Downloading fault model...")
-    gdown.download(SPFAULT_MODEL_URL, fault_model_path, quiet=False)
+    try:
+        gdown.download(SPFAULT_MODEL_URL, fault_model_path, quiet=False)
+    except Exception as e:
+        print(f"❌ Failed to download classification model: {e}")
+    
 else:
     print("✅ Fault model already exists")
