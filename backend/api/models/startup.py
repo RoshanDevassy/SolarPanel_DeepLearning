@@ -5,7 +5,7 @@ import gdown
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # models directory relative to this file
-MODELS_DIR = os.path.join(BASE_DIR, "models")
+MODELS_DIR = os.path.join(BASE_DIR)
 
 # Create folders if they don't exist
 os.makedirs(os.path.join(MODELS_DIR, "SpClassifyModel"), exist_ok=True)
