@@ -5,7 +5,7 @@ services:
     repo: https://github.com/RoshanDevassy/SolarPanel_DeepLearning.git
     branch: main
     rootDir: backend
-    dockerfilePath: api/Dockerfile
+    dockerfilePath: Dockerfile
     plan: free
     autoDeploy: true
     envVars:
