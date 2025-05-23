@@ -31,7 +31,7 @@ old_FAULT_CLASS_NAMES = ["clean", "dusty", "bird droppings", "snow", "physical d
 app = FastAPI()
 
 origins = [
-    "https://your-frontend.vercel.app",  # ✅ Your deployed frontend URL
+    "https://solarpanel-deeplearning-1.onrender.com",  # ✅ Your deployed frontend URL
 ]
 
 # ✅ Enable CORS for Next.js frontend
