@@ -17,4 +17,4 @@ ENV SPCLASS_MODEL_URL="https://drive.google.com/uc?id=1SbogyD1-abBIZOqR5oiNjyojc
 ENV SPFAULT_MODEL_URL="https://drive.google.com/uc?id=1BFX7R7gYeNvXHcylOdRDdG6xXt3LMXvq"
 
 # Run model download script (optional) and start the FastAPI app
-CMD ["sh", "-c", "python models/startup.py && uvicorn main:app --host 0.0.0.0 --port 10000"]
+CMD ["sh", "-c", "python /models/startup.py && uvicorn main:app --host 0.0.0.0 --port 10000"]
