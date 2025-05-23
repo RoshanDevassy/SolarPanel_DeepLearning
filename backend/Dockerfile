@@ -8,9 +8,10 @@ RUN apt-get update && apt-get install -y gcc g++ git wget curl && \
     pip install --upgrade pip
 
 # Copy necessary files
-COPY .api/models .api/models
-COPY .api/main.py .api/main.py
+
 COPY ./requirements.txt ./requirements.txt
+
+COPY ..
 
 # Install Python packages
 RUN pip install -r requirements.txt
@@ -20,4 +21,4 @@ ENV SPCLASS_MODEL_URL="https://drive.google.com/uc?id=1SbogyD1-abBIZOqR5oiNjyojc
 ENV SPFAULT_MODEL_URL="https://drive.google.com/uc?id=1BFX7R7gYeNvXHcylOdRDdG6xXt3LMXvq"
 
 # Run startup and launch app
-CMD ["sh", "-c", "python models/startup.py && uvicorn main:app --host 0.0.0.0 --port 10000"]
+CMD ["sh", "-c", "python models/startup.py && uvicorn api.main:app --host 0.0.0.0 --port 10000"]
