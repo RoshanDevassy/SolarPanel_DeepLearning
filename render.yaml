@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: fastapi-service
+    env: docker
+    repo: https://github.com/RoshanDevassy/SolarPanel_DeepLearning.git
+    branch: main
+    rootDir: backend
+    dockerfilePath: backend/Dockerfile
+    plan: free
+    autoDeploy: true
+    envVars:
+      - key: PORT
+        value: 10000
