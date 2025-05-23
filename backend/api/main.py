@@ -11,8 +11,8 @@ import os
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # ✅ Load trained models
-solar_panel_model_path = os.path.join(BASE_DIR,'models/SpClassifyModel/ClassifyModel.keras')
-fault_model_path = os.path.join(BASE_DIR,'models/SpFaultModel/FaultModel.keras')
+solar_panel_model_path = os.path.join(BASE_DIR,'SpClassifyModel/ClassifyModel.keras')
+fault_model_path = os.path.join(BASE_DIR,'SpFaultModel/FaultModel.keras')
 
 if not os.path.exists(solar_panel_model_path) or not os.path.exists(fault_model_path):
     raise RuntimeError("❌ Model file(s) not found - Ensure the paths are correct!\n")
