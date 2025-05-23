@@ -8,9 +8,9 @@ RUN apt-get update && apt-get install -y gcc g++ git wget curl && \
     pip install --upgrade pip
 
 # Copy necessary files
-COPY ./models ./models
-COPY ./main.py ./main.py
-COPY ../requirements.txt ./requirements.txt
+COPY .api/models .api/models
+COPY .api/main.py .api/main.py
+COPY ./requirements.txt ./requirements.txt
 
 # Install Python packages
 RUN pip install -r requirements.txt

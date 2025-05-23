@@ -8,6 +8,4 @@ __pycache__/
 *.pyo
 *.pyd
 .git/
-models/spclass/*.keras
-models/spfault/*.keras
-models/modelfiles/
+
