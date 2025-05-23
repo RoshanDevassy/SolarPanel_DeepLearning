@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y gcc g++ git wget curl && \
 COPY . .
 
 # Install Python dependencies
-RUN pip install -r requirements.txt
+RUN pip install --root-user-action=ignore -r requirements.txt
 
 # Set environment variables for model download (optional if using startup script)
 ENV SPCLASS_MODEL_URL="https://drive.google.com/uc?id=1SbogyD1-abBIZOqR5oiNjyojcRbHcsln"
