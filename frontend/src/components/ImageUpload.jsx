@@ -6,11 +6,6 @@ import Image from "next/image";
 export default function ImageUploader() {
   const BASE_URL =
     process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8000" ;
-  console.log("Using API base URL:", BASE_URL);
-  console.log(
-    "NEXT_PUBLIC_API_BASE_URL:",
-    process.env.NEXT_PUBLIC_API_BASE_URL
-  );
   const [image, setImage] = useState(null);
   const [preview, setPreview] = useState(null);
   const [panelPrediction, setPanelPrediction] = useState(null);
@@ -144,77 +139,3 @@ export default function ImageUploader() {
     </div>
   );
 }
-
-/* 'use client'
-
-import { useState } from "react";
-
-export default function ImageUploader() {
-  const [image, setImage] = useState(null);
-  const [preview, setPreview] = useState(null);
-  const [prediction, setPrediction] = useState(null);
-  const [loading, setLoading] = useState(false);
-
-  // Handle file selection
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    setImage(file);
-    setPreview(URL.createObjectURL(file)); // Show image preview
-  };
-
-  // Upload image to FastAPI
-  const handleUpload = async () => {
-    if (!image) {
-      alert("Please select an image first!");
-      return;
-    }
-
-    setLoading(true);
-    const formData = new FormData();
-    formData.append("file", image);
-
-    try {
-      const response = await fetch("http://127.0.0.1:8000/predict/", {
-        method: "POST",
-        body: formData,
-      });
-
-      const data = await response.json();
-      setPrediction(data);
-    } catch (error) {
-      console.error("Error uploading image:", error);
-      alert("Failed to get prediction");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  return (
-    <div className="container">
-      <h2>Solar Panel Fault Detection</h2>
-
-      <input type="file" onChange={handleFileChange} accept="image/jpeg, image/jpg, image/png" />
-      {preview && <img src={preview} alt="Preview" className="preview" />}
-
-      <button onClick={handleUpload} disabled={loading}>
-        {loading ? "Processing..." : "Upload & Predict"}
-      </button>
-
-      {prediction && (
-        <div className="result">
-          <h3>Prediction: {prediction.predicted_class}</h3>
-          <p>Confidence: {(prediction.confidence * 100).toFixed(2)}%</p>
-        </div>
-      )}
-
-      <style jsx>{`
-        .container { text-align: center; margin: 20px; }
-        .preview { width: 300px; margin-top: 10px; }
-        .result { margin-top: 20px; font-size: 18px; }
-        button { margin-top: 10px; padding: 10px 20px; cursor: pointer; }
-      `}</style>
-    </div>
-  );
-}
-
- */
