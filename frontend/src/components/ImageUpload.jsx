@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function ImageUploader() {
   const BASE_URL =
-    process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8000";
+    process.env.NEXT_PUBLIC_API_BASE_URL /* || "http://localhost:8000" */;
   console.log("Using API base URL:", BASE_URL);
   console.log(
     "NEXT_PUBLIC_API_BASE_URL:",
