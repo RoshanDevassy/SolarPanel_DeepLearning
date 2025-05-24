@@ -7,8 +7,18 @@ RUN npm install
 # Build the app
 FROM node:18-alpine AS builder
 WORKDIR /app
+
+# Accept environment variable for build
+ARG NEXT_PUBLIC_API_BASE_URL
+ENV NEXT_PUBLIC_API_BASE_URL=$NEXT_PUBLIC_API_BASE_URL
+
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+
+# Optional: log env for debugging
+RUN echo "Building with NEXT_PUBLIC_API_BASE_URL=$NEXT_PUBLIC_API_BASE_URL"
+
+# Build the Next.js app with env variable
 RUN npm run build
 
 # Serve the app
