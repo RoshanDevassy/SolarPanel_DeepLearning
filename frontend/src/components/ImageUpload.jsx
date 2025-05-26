@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import Image from "next/image";
 
 export default function ImageUploader() {
@@ -79,7 +79,7 @@ export default function ImageUploader() {
 
       const faultData = await faultResponse.json();
       setFaultPrediction(faultData);
-      
+
       const newCount = uploadCount + 1;
       localStorage.setItem("uploadCount", newCount);
       setUploadCount(newCount);
