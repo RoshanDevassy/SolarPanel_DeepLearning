@@ -104,7 +104,7 @@ export default function ImageUploader() {
         className="border p-2 rounded-md"
       />
 
-      <p>Image Uploaded Count {localStorage.getItem("uploadCount")} (Limit : 8)</p>
+      <p>Image Uploaded Count {uploadCount} (Limit : 8)</p>
 
       {/* Image Preview */}
       {preview && (
