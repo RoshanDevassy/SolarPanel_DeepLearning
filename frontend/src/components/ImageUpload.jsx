@@ -35,19 +35,17 @@ export default function ImageUploader() {
   // Upload image to FastAPI for Solar Panel Detection
   const handleUpload = async () => {
 
-    
     if (!image) {
       alert("⚠️Please select an image first!");
       return;
     }
-
     setLoading(true);
     setError(null);
 
     const formData = new FormData();
     formData.append("file", image);
     
-    if (newCount > 8) {
+    if (uploadCount > 8) {
       alert("Upload limit reached. You can only upload 8 files.");
       return;
     }
