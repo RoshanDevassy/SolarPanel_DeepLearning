@@ -12,6 +12,7 @@ export default function ImageUploader() {
   const [faultPrediction, setFaultPrediction] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const uploadedCount = parseInt(localStorage.getItem("uploadCount")) || 0;
 
   // Handle file selection
   const handleFileChange = (event) => {
@@ -38,7 +39,7 @@ export default function ImageUploader() {
     const formData = new FormData();
     formData.append("file", image);
 
-    const uploadedCount = parseInt(localStorage.getItem("uploadCount")) || 0;
+    
 
     if (uploadedCount >= 8) {
       alert("Upload limit reached. You can only upload 8 files.");
