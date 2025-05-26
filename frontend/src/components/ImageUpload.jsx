@@ -12,7 +12,13 @@ export default function ImageUploader() {
   const [faultPrediction, setFaultPrediction] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const uploadedCount = parseInt(localStorage.getItem("uploadCount")) || 0;
+  const [uploadCount,setUploadCount] = useState(0)
+  
+  useEffect(() => {
+    // This code runs only in the browser
+    const count = parseInt(localStorage.getItem("uploadCount")) || 0;
+    setUploadCount(count);
+  }, []);
 
   // Handle file selection
   const handleFileChange = (event) => {
@@ -28,6 +34,8 @@ export default function ImageUploader() {
 
   // Upload image to FastAPI for Solar Panel Detection
   const handleUpload = async () => {
+
+    
     if (!image) {
       alert("⚠️Please select an image first!");
       return;
@@ -38,10 +46,8 @@ export default function ImageUploader() {
 
     const formData = new FormData();
     formData.append("file", image);
-
     
-
-    if (uploadedCount >= 8) {
+    if (newCount > 8) {
       alert("Upload limit reached. You can only upload 8 files.");
       return;
     }
@@ -73,8 +79,10 @@ export default function ImageUploader() {
 
       const faultData = await faultResponse.json();
       setFaultPrediction(faultData);
-
-      localStorage.setItem("uploadCount", uploadedCount + 1);
+      
+      const newCount = uploadCount + 1;
+      localStorage.setItem("uploadCount", newCount);
+      setUploadCount(newCount);
 
     } catch (error) {
       console.error("Error:", error);
