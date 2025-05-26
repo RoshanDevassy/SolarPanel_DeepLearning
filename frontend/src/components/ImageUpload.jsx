@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function ImageUploader() {
   const BASE_URL =
-    process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8000" ;
+    process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8000";
   const [image, setImage] = useState(null);
   const [preview, setPreview] = useState(null);
   const [panelPrediction, setPanelPrediction] = useState(null);
@@ -38,6 +38,13 @@ export default function ImageUploader() {
     const formData = new FormData();
     formData.append("file", image);
 
+    const uploadedCount = parseInt(localStorage.getItem("uploadCount")) || 0;
+
+    if (uploadedCount >= 8) {
+      alert("Upload limit reached. You can only upload 8 files.");
+      return;
+    }
+
     try {
       // Step 1: Check if the image contains a solar panel
       const panelResponse = await fetch(`${BASE_URL}/detect-panel/`, {
@@ -65,6 +72,9 @@ export default function ImageUploader() {
 
       const faultData = await faultResponse.json();
       setFaultPrediction(faultData);
+
+      localStorage.setItem("uploadCount", uploadedCount + 1);
+
     } catch (error) {
       console.error("Error:", error);
       setError("❌ Failed to process the image. Please try again.");
@@ -74,8 +84,8 @@ export default function ImageUploader() {
   };
 
   return (
-    <div className="flex flex-col items-center gap-5 p-5">
-      <h1 className="text-2xl font-bold">Solar Panel Fault Detection</h1>
+    <div className="flex flex-col items-center gap-5 px-3 md:p-5 ">
+      <h1 className="text-2xl font-bold text-center">Solar Panel Analyser using Deep Learning</h1>
 
       {/* File Upload */}
       <input
@@ -84,6 +94,8 @@ export default function ImageUploader() {
         accept="image/jpeg, image/jpg, image/png"
         className="border p-2 rounded-md"
       />
+
+      <p>Image Uploaded Count {localStorage.getItem("uploadCount")} (Limit : 8)</p>
 
       {/* Image Preview */}
       {preview && (
@@ -104,7 +116,18 @@ export default function ImageUploader() {
             : "bg-blue-500 hover:bg-blue-600"
         }`}
       >
-          {loading ? <span className=" animate-spin duration-75"><Image src="/icons/processing_icon.svg" height={25} width={25} alt="processing_icon"/></span> : ''}
+        {loading ? (
+          <span className=" animate-spin duration-75">
+            <Image
+              src="/icons/processing_icon.svg"
+              height={25}
+              width={25}
+              alt="processing_icon"
+            />
+          </span>
+        ) : (
+          ""
+        )}
         {loading ? "Processing..." : "⬆️ Upload & Predict"}
       </button>
 
