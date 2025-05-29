@@ -17,4 +17,8 @@ RUN ls -l api/
 ENV SPCLASS_MODEL_URL="https://drive.google.com/uc?id=1SbogyD1-abBIZOqR5oiNjyojcRbHcsln"
 ENV SPFAULT_MODEL_URL="https://drive.google.com/uc?id=1BFX7R7gYeNvXHcylOdRDdG6xXt3LMXvq"
 
-CMD ["sh", "-c", "python api/models/startup.py && uvicorn api.main:app --host 0.0.0.0 --port $PORT"]
+# Just download the model, do NOT load into memory
+RUN python api/models/startup.py
+
+#CMD ["sh", "-c", "python api/models/startup.py && uvicorn api.main:app --host 0.0.0.0 --port $PORT"]
+CMD ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "10000"]
