@@ -1,6 +1,6 @@
 "use client";
 
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 
 export default function ImageUploader() {
@@ -12,8 +12,8 @@ export default function ImageUploader() {
   const [faultPrediction, setFaultPrediction] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [uploadCount,setUploadCount] = useState(0)
-  
+  const [uploadCount, setUploadCount] = useState(0);
+
   useEffect(() => {
     // This code runs only in the browser
     const count = parseInt(localStorage.getItem("uploadCount")) || 0;
@@ -34,7 +34,6 @@ export default function ImageUploader() {
 
   // Upload image to FastAPI for Solar Panel Detection
   const handleUpload = async () => {
-
     if (!image) {
       alert("⚠️Please select an image first!");
       return;
@@ -44,11 +43,15 @@ export default function ImageUploader() {
 
     const formData = new FormData();
     formData.append("file", image);
-    
+
     if (uploadCount > 8) {
       alert("Upload limit reached. You can only upload 8 files.");
       return;
     }
+
+    const newCount = uploadCount + 1;
+    localStorage.setItem("uploadCount", newCount);
+    setUploadCount(newCount);
 
     try {
       // Step 1: Check if the image contains a solar panel
@@ -77,11 +80,6 @@ export default function ImageUploader() {
 
       const faultData = await faultResponse.json();
       setFaultPrediction(faultData);
-
-      const newCount = uploadCount + 1;
-      localStorage.setItem("uploadCount", newCount);
-      setUploadCount(newCount);
-
     } catch (error) {
       console.error("Error:", error);
       setError("❌ Failed to process the image. Please try again.");
@@ -92,7 +90,9 @@ export default function ImageUploader() {
 
   return (
     <div className="flex flex-col items-center gap-5 px-3 md:p-5 ">
-      <h1 className="text-2xl font-bold text-center">Solar Panel Analyser using Deep Learning</h1>
+      <h1 className="text-2xl font-bold text-center">
+        Solar Panel Analyser using Deep Learning
+      </h1>
 
       {/* File Upload */}
       <input
