@@ -55,7 +55,7 @@ export default function AboutPage() {
       <div className="min-h-[82vh] p-1 pl-5 pr-3">
         <section className=" pb-3">
           <div>
-            <h1 className="c-main-heading-style">About Us</h1>
+            <h1 className="c-main-heading-style">About Solar Panel Fault Detection</h1>
             <h3 className=" c-sub-heading-style">Introduction</h3>
             <p className=" text-justify">
               Welcome to the Solar Panel Fault Detection System, an AI-powered
