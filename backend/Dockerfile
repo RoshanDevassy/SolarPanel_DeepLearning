@@ -10,6 +10,7 @@ COPY . .
 
 RUN pip install -r requirements.txt
 
+RUN python api/models/startup.py
 RUN ls -l
 RUN ls -l api/
 
@@ -20,5 +21,5 @@ ENV SPFAULT_MODEL_URL="https://drive.google.com/uc?id=1BFX7R7gYeNvXHcylOdRDdG6xX
 # Just download the model, do NOT load into memory
 #RUN python api/models/startup.py
 
-CMD ["sh", "-c", "python api/models/startup.py && uvicorn api.main:app --host 0.0.0.0 --port $PORT"]
+CMD ["sh", "-c", "uvicorn api.main:app --host 0.0.0.0 --port $PORT"]
 #CMD ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "10000"]
