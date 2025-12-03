@@ -10,9 +10,6 @@ COPY . .
 
 RUN pip install -r requirements.txt
 
-ENV SPCLASS_MODEL_URL="https://drive.google.com/uc?id=1SbogyD1-abBIZOqR5oiNjyojcRbHcsln"
-ENV SPFAULT_MODEL_URL="https://drive.google.com/uc?id=1BFX7R7gYeNvXHcylOdRDdG6xXt3LMXvq"
-
 RUN python api/models/startup.py
 
 RUN ls -l
